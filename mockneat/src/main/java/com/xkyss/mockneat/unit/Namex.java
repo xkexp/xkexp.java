@@ -22,35 +22,62 @@ public class Namex extends MockUnitBase implements MockUnitString {
     }
 
     /**
-     * 名
+     * 男名
      */
-    public MockUnitString last() {
-        return dictx.of("names/last");
+    public MockUnitString male() {
+        return dictx.of("names/male");
+    }
+
+    /**
+     * 女名
+     */
+    public MockUnitString female() {
+        return dictx.of("names/female");
+    }
+
+    public MockUnitString single() {
+        return single(50.0);
+    }
+
+    public MockUnitString multi() {
+        return multi(50.0);
+    }
+
+    public MockUnitString full() {
+        return full(50.0, 50.0);
     }
 
     /**
      * 单名
+     *  p: 男女概率, 区间[0, 100]
      */
-    public MockUnitString single() {
-        return () -> () -> first().val() + last().val();
+    public MockUnitString single(double p) {
+        return () -> () -> mockNeat.bools().probability(p).val()
+                ? male().val()
+                : female().val();
     }
 
     /**
-     * 双名
+     * 多名
+     *  p: 男女概率, 区间[0, 100]
      */
-    public MockUnitString multi() {
-        return () -> () -> first().val() + last().val() + last().val();
+    public MockUnitString multi(double p) {
+        return () -> () -> mockNeat.bools().probability(p).val()
+                ? (male().val() + male().val())
+                : (female().val() + female().val());
     }
 
     /**
-     * 全名(单双均有概率)
+     * 全名
+     *  p1: 男女概率, 区间[0, 100]
+     *  p2: 单双概率, 区间[0, 100]
      */
-    public MockUnitString full() {
-        return () -> () -> mockNeat.bools().probability(50.0).val() ? single().val() : multi().val();
+    public MockUnitString full(double p1, double p2) {
+        return () -> () -> first().val() + (mockNeat.bools().probability(p2).val() ? single(p1).val() : multi(p1).val());
     }
 
     @Override
     public Supplier<String> supplier() {
-        return full().supplier();
+        return full(50.0, 50.0).supplier();
     }
 }
