@@ -24,6 +24,11 @@ public class MockNeatTest {
         System.out.println(localDates().between(LocalDate.now().minusYears(5), LocalDate.now()).mapToDate().get());
     }
 
+    @Test
+    public void test_02() {
+        System.out.println(regex("[A-Z]{1}\\d{3}").get());
+    }
+
     public MockUnitString xp() {
         return urls()
                 .append("/")
