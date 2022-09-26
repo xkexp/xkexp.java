@@ -9,6 +9,7 @@
   </parent>
   <artifactId>xkus-codegen</artifactId>
   <name>Xkus Codegen - Runtime</name>
+  <description>Generate Reopsitories and Resources Code</description>
   <dependencies>
     <dependency>
       <groupId>io.quarkus</groupId>

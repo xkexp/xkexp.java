@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.xkyii.quarkus.xkus.codegen.test.XkusCodegenDevModeTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.409 s - in com.xkyii.quarkus.xkus.codegen.test.XkusCodegenDevModeTest
