@@ -1,0 +1,4 @@
+META-INF\quarkus-build-steps.list
+META-INF\quarkus-javadoc.properties
+com\xkyii\quarkus\xkus\codegen\deployment\XkusCodegenProcessor$$accessor.class
+com\xkyii\quarkus\xkus\codegen\deployment\XkusCodegenProcessor.class

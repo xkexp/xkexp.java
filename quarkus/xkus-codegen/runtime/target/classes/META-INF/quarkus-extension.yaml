@@ -1,0 +1,8 @@
+---
+name: "Xkus Codegen"
+metadata:
+  built-with-quarkus-core: "2.12.1.Final"
+  extension-dependencies:
+  - "io.quarkus:quarkus-arc"
+  - "io.quarkus:quarkus-core"
+artifact: "com.xkyii.quarkus:xkus-codegen::jar:1.0.0-SNAPSHOT"
