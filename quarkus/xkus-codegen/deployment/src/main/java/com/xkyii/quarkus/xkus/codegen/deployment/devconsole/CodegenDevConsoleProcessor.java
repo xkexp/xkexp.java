@@ -20,7 +20,7 @@ public class CodegenDevConsoleProcessor {
     @BuildStep(onlyIf = IsDevelopment.class)
     public DevConsoleRuntimeTemplateInfoBuildItem codegenUnits(CurateOutcomeBuildItem curateOutcomeBuildItem) {
         return new DevConsoleRuntimeTemplateInfoBuildItem(
-                "codegen",
+                "codegens",
                 new CodegenContainerSupplier(),
                 this.getClass(),
                 curateOutcomeBuildItem

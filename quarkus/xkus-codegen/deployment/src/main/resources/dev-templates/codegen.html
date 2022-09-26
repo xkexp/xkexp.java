@@ -4,23 +4,29 @@
 <table class="table table-striped">
     <thead class="thead-dark">
     <tr>
-        <th scope="col">Name</th>
+        <th scope="col">Id</th>
+        <th scope="col">Package</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>
-            Entity Package:
-        </td>
-        <td>
-            <div class="btn-group">
-                <form method="post"  enctype="application/x-www-form-urlencoded">
-                    <input id="Generate" type="submit" class="btn btn-primary btn-sm" value="Generate" />
-                </form>
-            </div>
-
-        </td>
+        {#for codegen in info:codegens}
+        <tr>
+            <td>{codegen.id}</td>
+            <td>{codegen.config.packageName}</td>
+            <td>
+                <div class="btn-group">
+                    <form method="post" enctype="application/x-www-form-urlencoded">
+                        <input id="Repository" type="submit" class="btn btn-primary btn-sm" value="Repository" />
+                    </form>
+                    &nbsp;
+                    <form method="post" enctype="application/x-www-form-urlencoded">
+                        <input id="Resource" type="submit" class="btn btn-primary btn-sm" value="Resource" />
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {/for}
     </tbody>
 </table>
 
