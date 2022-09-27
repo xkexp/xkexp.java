@@ -5,7 +5,7 @@ import io.quarkus.datasource.common.runtime.DataSourceUtil;
 import java.util.*;
 import java.util.function.Supplier;
 
-public class CodegenContainerSupplier implements Supplier<Collection<CodegenContainer>> {
+public class CodegenContainersSupplier implements Supplier<Collection<CodegenContainer>> {
 
     @Override
     public Collection<CodegenContainer> get() {

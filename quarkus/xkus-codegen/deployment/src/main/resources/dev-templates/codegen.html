@@ -17,10 +17,14 @@
             <td>
                 <div class="btn-group">
                     <form method="post" enctype="application/x-www-form-urlencoded">
+                        <input type="hidden" name="id" value="{codegen.id}">
+                        <input type="hidden" name="operation" value="repository">
                         <input id="Repository" type="submit" class="btn btn-primary btn-sm" value="Repository" />
                     </form>
                     &nbsp;
                     <form method="post" enctype="application/x-www-form-urlencoded">
+                        <input type="hidden" name="id" value="{codegen.id}">
+                        <input type="hidden" name="operation" value="resource">
                         <input id="Resource" type="submit" class="btn btn-primary btn-sm" value="Resource" />
                     </form>
                 </div>
