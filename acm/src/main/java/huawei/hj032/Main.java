@@ -1,4 +1,4 @@
-package huawei.hj32;
+package huawei.hj032;
 
 import java.util.Scanner;
 
