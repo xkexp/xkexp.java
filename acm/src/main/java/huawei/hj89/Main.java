@@ -83,18 +83,18 @@ public class Main {
                     result[index] = cards[i];
                     return true;
                 }
-                if (dfs(index+1, ((index == 0) ? 0 : sum) - cards[i])) {
+                if (index > 0 && dfs(index+1, sum - cards[i])) {
                     ops[index] = '-';
                     result[index] = cards[i];
                     return true;
                 }
-                if (dfs(index+1, ((index == 0) ? 1 : sum) * cards[i])) {
+                if (index > 0 && dfs(index+1, sum * cards[i])) {
                     ops[index] = '*';
                     result[index] = cards[i];
                     return true;
                 }
-                if (((index == 0) ? 1 : sum) % cards[i] == 0) {
-                    if (dfs(index+1, ((index == 0) ? 1 : sum) / cards[i])) {
+                if ((index > 0) && (sum % cards[i] == 0)) {
+                    if (dfs(index+1, sum / cards[i])) {
                         ops[index] = '/';
                         result[index] = cards[i];
 
