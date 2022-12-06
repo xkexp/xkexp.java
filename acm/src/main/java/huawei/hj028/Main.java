@@ -1,76 +1,97 @@
 package huawei.hj028;
 
-import java.util.Arrays;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     /**
-     * 素数伴侣
-     * TODO: 超时
-     *
-     * input
- 22
- 20923 22855 2817 1447 29277 19736 20227 22422 24712 27054 27050 18272 5477 27174 13880 15730 7982 11464 27483 19563 5998 16163
+     * 匈牙利算法
      */
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
 
-        int count = in.nextInt();
-        int[] numbers = new int[count];
-        for (int i=0; i<count; i++) {
-            numbers[i] = in.nextInt();
+        // 奇数
+        List<Integer> odds = new ArrayList<>();
+        // 偶数
+        List<Integer> evens = new ArrayList<>();
+
+        int count = Integer.parseInt(in.nextLine());
+        String[] s = in.nextLine().split(" ");
+        for (int i = 0; i < count; i++) {
+            int n = Integer.parseInt(s[i]);
+            if (n % 2 == 0) {
+                evens.add(n);
+            }
+            else {
+                odds.add(n);
+            }
         }
 
-        int ret = analyse(0, count, numbers, new boolean[count]);
+        // 结果
+        int ret = 0;
+        // 偶数的伴侣
+        int[] evenMates = new int[evens.size()];
+        // 遍历计算
+        for (int i = 0; i < odds.size(); i++) {
+            if (find(i, 0, odds, evens, evenMates)) {
+                ret++;
+            }
+        }
+
         System.out.println(ret);
     }
 
-    private static int analyse(int depth, int count, int[] numbers, boolean[] flags) {
-        int maxi = depth;
-        for (int i=0; i<count; i++) {
-            if (!flags[i]) {
-                int maxj = maxi;
-                for (int j=i+1; j<count; j++) {
-                    if (!flags[j]) {
-                        if (isMate(numbers[i], numbers[j])) {
-                            boolean[] copyFlags = Arrays.copyOf(flags,count);
-                            copyFlags[i] = true;
-                            copyFlags[j] = true;
-                            int d = analyse(depth + 1, count, numbers, copyFlags);
-                            if (maxj < d) {
-                                maxj = d;
-                            }
-                        }
-                    }
+    /**
+     * 寻找奇数在偶数列表的伴侣
+     * @param oddIndex 奇数序号
+     * @param evenIndex 偶数序号
+     * @param evens 偶数列表
+     * @param evenMates 偶数的伴侣
+     * @return 是否找到伴侣
+     */
+    private static boolean find(int oddIndex, int evenIndex, List<Integer> odds, List<Integer> evens, int[] evenMates) {
+        Integer odd = odds.get(oddIndex);
+        for (int j = evenIndex; j < evens.size(); j++) {
+            Integer even = evens.get(j);
+            // 可以成为伴侣
+            if (isPrime(odd + even)) {
+                // 如果偶数还没有伴侣
+                Integer mate = evenMates[j];
+                if (mate == 0) {
+                    evenMates[j] = oddIndex;
+                    return true;
                 }
-
-                if (maxi < maxj) {
-                    maxi = maxj;
+                // 对方已经有伴侣,让他换一个,evenIndex及之前的都判断过了,从evenIndex开始
+                if (find(mate, evenIndex+1, odds, evens, evenMates)) {
+                    evenMates[j] = oddIndex;
+                    return true;
                 }
             }
         }
-
-        return maxi;
+        
+        return false;
     }
 
-    private static boolean isMate(int a, int b) {
-        return isEven(a + b);
-    }
+    /**
+     * 判断是否素数
+     * @param n 被判断的数
+     * @return 是否素数
+     */
+    private static boolean isPrime(Integer n) {
+        if (n == 1) {
+            return false;
+        }
+        if (n == 2 || n == 3) {
+            return true;
+        }
 
-    private static boolean isEven(int n) {
-        // 2-平方根除不尽视为质数
-        int i = 2;
-        while (i <= Math.sqrt(n)) {
+        for (int i = 2; i <= Math.sqrt(n); i++) {
             if (n % i == 0) {
-//                n /= i;
                 return false;
             }
-            else {
-                i++;
-            }
         }
-
         return true;
     }
-
 }
