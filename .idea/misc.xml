@@ -6,6 +6,7 @@
       <list>
         <option value="$PROJECT_DIR$/mockneat/pom.xml" />
         <option value="$PROJECT_DIR$/acm/pom.xml" />
+        <option value="$PROJECT_DIR$/integration-test/pom.xml" />
       </list>
     </option>
   </component>
